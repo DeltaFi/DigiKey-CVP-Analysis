@@ -3,18 +3,19 @@ import os
 import re
 import urllib
 
-def downloadCSV(part, URL):
+def downloadCSV(part, quantityString, URL):
+	quantities = quantityString.split(",")
 	downloadURL = re.sub("/product-search/[^ \t\n\r\f\v]*\?", "/product-search/download.csv?", URL)
-	quantities = ["quantity=1","quantity=5", "quantity=10", "quantity=25", "quantity=50", "quantity=100", "quantity=250", "quantity=500", "quantity=1000", "quantity=2000", "quantity=5000"]
 	for j in range(0, len(quantities)):
+		quantities[j] = "-quantity=" + quantities[j]
 		quantityadjustedURL = downloadURL.replace("quantity=0", quantities[j])
 		urllib.request.urlretrieve(quantityadjustedURL, "data/" + part + quantities[j] + ".csv")
-def main():
 
+def main():
 	file = open("URLs")
 	list = file.read().split()
-	for i in range(0, len(list) - 1, 2):
-		downloadCSV(list[i], list[i+1])
+	for i in range(0, len(list) - 2, 3):
+		downloadCSV(list[i], list[i+1], list[i+2])
 
 '''
 	mdf = pd.read_csv("data/2.csv")
