@@ -1,9 +1,10 @@
 import pandas as pd
 import os
+import re
 import urllib
 
 def downloadCSV(part, URL):
-	downloadURL = URL.replace("http://www.digikey.ca/product-search/en?", "http://www.digikey.ca/product-search/download.csv?")
+	downloadURL = re.sub("/product-search/[^ \t\n\r\f\v]*\?", "/product-search/download.csv?", URL)
 	quantities = ["quantity=1","quantity=5", "quantity=10", "quantity=25", "quantity=50", "quantity=100", "quantity=250", "quantity=500", "quantity=1000", "quantity=2000", "quantity=5000"]
 	for j in range(0, len(quantities)):
 		quantityadjustedURL = downloadURL.replace("quantity=0", quantities[j])
