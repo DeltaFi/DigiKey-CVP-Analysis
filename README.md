@@ -9,5 +9,5 @@ In the text file named "URLs", write down the title for your component, followed
 
 <h3>Limitations:</h3>
 <ul>
-  <li>The "results per page" setting limits the number of results that will be contained in the csv. this can be fixed fairly easily</li>
+  <li></li>
 </ul>
