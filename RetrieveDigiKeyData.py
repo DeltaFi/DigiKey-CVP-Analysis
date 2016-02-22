@@ -1,6 +1,5 @@
 import pandas as pd
 import numpy as np
-import requests
 import os
 import re
 import urllib
@@ -8,6 +7,9 @@ from urllib import *
 from configparser import SafeConfigParser
 from bs4 import BeautifulSoup
 
+# processURL: Takes URL input, checks if URL is of expected format, adds query string if none detected and
+# modifies pageSize parameter from query string if it is absent or not set to max (500 results per page).
+# Returns dict with processed URL, mode (search or detail page) and the netloc (ie www.digikey.com)
 def processURL(name, URL):
 
 	pURL = urllib.parse.urlparse(URL)
@@ -38,8 +40,6 @@ def processURL(name, URL):
 
 	return {"URL": URL,"Mode": mode, "netloc": pURL.netloc}
 
-
-#function attempts to return HTML file for the given URL, performs preliminary url check
 def requestURL(name, URL):
 
 	try:
@@ -50,7 +50,10 @@ def requestURL(name, URL):
 		print(e.code)
 		raise Exception("HTML Dowload Failed:" + URL)
 
-#function retrieves data
+# retrieveData: If in detail mode, part info is retrieved along with the info for each packaging version
+# listed on the page; results stored in CSV. If in search mode, all unique manufacturer part numbers (manID)
+# are extracted from search results; data is retrieved for all packaging variants of each unique manID;
+# data for all parts in that search are stored in a single CSV
 def retrieveData(name, pURL, config, columns):
 
 	URL = pURL["URL"]
@@ -58,6 +61,7 @@ def retrieveData(name, pURL, config, columns):
 	cur = soup.find("a", {"class": "header-currency"}).text.strip()
 	df = pd.DataFrame(columns=columns)
 
+	#ensure Currency used is consistent. set in Config file.
 	if config.getboolean('Retrieve Digikey Data', 'currency-check'):
 		if not cur == str(config.get('Retrieve Digikey Data', 'currency')):
 			raise Exception("currency mismatch")
@@ -85,6 +89,7 @@ def retrieveData(name, pURL, config, columns):
 			print(dURL)
 			urllib.request.urlretrieve(dURL, "DigiKeyData/tmp/" + str(name) + "-" + str(i) + ".csv")
 			tdf = pd.concat([tdf, pd.read_csv("DigiKeyData/tmp/" + str(name) + "-" + str(i) + ".csv")["Manufacturer Part Number"]], axis=0,ignore_index=True)
+			os.remove("DigiKeyData/tmp/" + str(name) + "-" + str(i) + ".csv")
 
 		tdf = tdf.drop_duplicates().reset_index()["Manufacturer Part Number"]
 
@@ -115,6 +120,7 @@ def retrieveData(name, pURL, config, columns):
 	df = df.dropna(axis='columns',how="all")
 	df.to_csv("DigiKeyData/" + str(name) + ".csv" ,index=False)
 
+# retrievePartDetails: the part details are scraped from part-detail page, a dataframe is returned with said information.
 def retrievePartDetails(name, soup, cur, config):
 
 	sep = str(config.get('Retrieve Digikey Data', 'dot-comma'))

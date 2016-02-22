@@ -41,7 +41,7 @@ def main():
 			pd.DataFrame(columns = titlesVarCost).to_csv('DataIN/VarCosts.csv', index=False)
 
 		if config.getboolean('Generate CSVs', 'gen-p'):
-			pd.DataFrame(columns = ['Name', 'Price']).to_csv('DataIN/Price.csv', index=False)
+			pd.DataFrame(columns = ['Price']).to_csv('DataIN/Price.csv', index=False)
 
 	except OSError as e:
 		print(e)
