@@ -1,4 +1,4 @@
-# Digikey-Volume-Cost-Analysis
+Digikey Cost Volume Profit Analysis
 
 A tool to aid in BOM decision making for electronics products. Automatically scrapes and outputs part data from DigiKey including price breaks for all packaging variants. Provides part selection suggestions in all else held equal situations where cost and part availability are the only factors. Allows for A|B comparison of design decisions.
 
