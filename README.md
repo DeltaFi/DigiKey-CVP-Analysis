@@ -2,6 +2,14 @@
 
 A tool to aid in BOM decision making for electronics products. Automatically scrapes and outputs part data from DigiKey including price breaks for all packaging variants. Provides part selection suggestions in all else held equal situations where cost and part availability are the only factors. Allows for A|B comparison of design decisions.
 
+<h2>Requirements</h2>
+<ul>
+<li>BeautifulSoup</li>
+<li>Pandas</li>
+<li>Numpy</li>
+<li>Matplotlib</li>
+</ul>
+
 <h2>Scripts</h2>
 <ul>
 <li>GenCSVs.py             - produces the necessary CSV file templates for the user to fill in.</li>
