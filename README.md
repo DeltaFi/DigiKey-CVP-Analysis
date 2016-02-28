@@ -39,3 +39,8 @@ A tool to aid in BOM decision making for electronics products. Automatically scr
 <li>run PartSelection.py </li>
 <li>run CVPAnalysis.py </li>
 </ol>
+
+
+<h1>Update:</h1>
+
+I gave up on this because I found out about Octopart.com. w
