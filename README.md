@@ -1,3 +1,8 @@
+<h1>Update:</h1>
+
+I gave up on this because I found out about Octopart.com. This code is mediocre but I will leave it here for "historical reference".
+
+
 <h1>Digikey Cost Volume Profit Analysis</h1>
 
 A tool to aid in BOM decision making for electronics products. Automatically scrapes and outputs part data from DigiKey including price breaks for all packaging variants. Provides part selection suggestions in all else held equal situations where cost and part availability are the only factors. Allows for A|B comparison of design decisions.
@@ -12,10 +17,10 @@ A tool to aid in BOM decision making for electronics products. Automatically scr
 
 <h2>Scripts</h2>
 <ul>
-<li>GenCSVs.py             - produces the necessary CSV file templates for the user to fill in.</li>
-<li>RetrieveDigiKeyData.py - retrieves data from the urls specified in the DigiKeyParts.csv file.</li>
-<li>PartSelection.py       - finalize BOM based on cost and availability of candidate components</li>
-<li>CVPAnalysis.py         - outputs CVP graph and table</li>
+<li>COMPLETE - GenCSVs.py             - produces the necessary CSV file templates for the user to fill in.</li>
+<li> COMPLETE - RetrieveDigiKeyData.py - retrieves data from the urls specified in the DigiKeyParts.csv file.</li>
+<li>INCOMPLETE - PartSelection.py       - finalize BOM based on cost and availability of candidate components</li>
+<li>INCOMPLETE - CVPAnalysis.py         - outputs CVP graph and table</li>
 </ul>
 <h2>Data</h2>
 <ul>
@@ -39,8 +44,3 @@ A tool to aid in BOM decision making for electronics products. Automatically scr
 <li>run PartSelection.py </li>
 <li>run CVPAnalysis.py </li>
 </ol>
-
-
-<h1>Update:</h1>
-
-I gave up on this because I found out about Octopart.com. w
