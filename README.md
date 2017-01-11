@@ -1,6 +1,6 @@
 <h1>Update:</h1>
 
-I found out about Octopart.com. This project is mediocre but I will leave it here for "historical reference".
+I found out about Octopart.com, so all of this work is useless. This project is mediocre but I will leave it here for "historical reference".
 
 
 <h1>Digikey Cost Volume Profit Analysis</h1>
